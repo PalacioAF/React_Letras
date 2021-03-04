@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 
-const Formulario = ({guardarBusquedaLetra}) => {
+const Formulario = ({guardarBusquedaLetra,setLoading}) => {
 
     const [busqueda, guardarBusqueda] = useState({
         artista: '',
@@ -25,9 +25,11 @@ const Formulario = ({guardarBusquedaLetra}) => {
 
         if(artista.trim()===''||cancion.trim()===''){
             guardarError(true);
+            setLoading(false);
             return;
         }
         guardarError(false);
+        setLoading(true);
         guardarBusquedaLetra(busqueda);
     }
    
@@ -44,7 +46,7 @@ const Formulario = ({guardarBusquedaLetra}) => {
                     className="col card text-white bg-transparent mb-5 pt-5 pb-2"
                     >
                         <fieldset>
-                            <legend className="text-center">Buscador Letras Canciones</legend> 
+                            <legend className="text-center">Buscador Letras Canciones en Inglés</legend> 
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group">
@@ -53,7 +55,7 @@ const Formulario = ({guardarBusquedaLetra}) => {
                                             type="text"
                                             className="form-control"
                                             name="artista"
-                                            placeholder="Nombre Artista"
+                                            placeholder="Nombre Artista (ej: Metallica)"
                                             onChange={actualizarState}
                                             value={artista}
                                         />
@@ -67,7 +69,7 @@ const Formulario = ({guardarBusquedaLetra}) => {
                                             type="text"
                                             className="form-control"
                                             name="cancion"
-                                            placeholder="Nombre Canción"
+                                            placeholder="Nombre Canción (ej: One)"
                                             onChange={actualizarState}
                                             value={cancion}
                                         />
